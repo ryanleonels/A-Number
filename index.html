@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Number</title>
+
+    <script src="break_eternity.js"></script>
+    <script src="format.js"></script>
+    <script src="main.js" defer></script>
+    <script src="saveload.js" defer></script>
+    <script src="buttons.js" defer></script>
+</head>
+<body>
+    <div id="tab-select">
+        <button id="tab0_button" onclick="tab(0)">main</button>
+        <button id="tab1_button" onclick="tab(1)">main</button>
+    </div>
+
+    <div id="number">
+        <span id="number-display" style="font-size: 24px;"></span>
+        <br>
+        <button id="button1" onclick="start()">Number Go Up</button>
+        <button id="button2" onclick="faster()">Number Go Up Faster (<span id="speed-cost"></span>)</button>
+    </div>
+
+    <div id="alpha">
+
+    </div>
+</body>
+</html>
