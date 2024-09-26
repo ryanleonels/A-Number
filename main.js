@@ -15,6 +15,11 @@ function check_unlocks() {
     return u
 }
 
+function tab(n) {
+    ge("number").style.display = (n == 0 ? "inline-block" : "none")
+    ge("alpha").style.display = (n == 1 ? "inline-block" : "none")
+}
+
 setInterval(() => {
     real_gain = new Decimal(0)
     real_gain = real_gain.add(player.gain)
@@ -22,4 +27,7 @@ setInterval(() => {
     player.number = player.number.add(real_gain.div(30))
     ge("number-display").innerHTML = format(player.number)
     ge("speed-cost").innerHTML = format(new Decimal(10).mul(new Decimal(1.15).pow(player.gain.sub(1))))
+
+    player.unlocks = check_unlocks()
+    fix_buttons()
 }, (1000 / 30));
