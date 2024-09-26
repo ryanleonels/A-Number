@@ -56,3 +56,7 @@ function fix_buttons() {
 
 if (!load()) {player = def_player} // Load the game
 fix_buttons()
+
+setInterval(() => {
+    save()
+}, 15000)
