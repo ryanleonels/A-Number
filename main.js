@@ -28,6 +28,7 @@ setInterval(() => {
     ge("number-display").innerHTML = format(player.number)
     ge("speed-cost").innerHTML = format(new Decimal(10).mul(new Decimal(1.15).pow(player.gain.sub(1))))
 
-    player.unlocks = check_unlocks()
+    let u = check_unlocks()
+    player.unlocks = player.unlocks.gt(u) ? player.unlocks : u
     fix_buttons()
 }, (1000 / 30));
