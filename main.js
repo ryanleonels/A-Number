@@ -3,7 +3,8 @@ const ge = (x) => document.getElementById(x)
 const def_player = {
     number: new Decimal(0),
     gain: new Decimal(0),
-    unlocks: 0
+    unlocks: 0,
+    offline_time: 0
 }
 
 let player;
