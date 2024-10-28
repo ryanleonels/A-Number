@@ -14,19 +14,22 @@
 <body>
     <div id="tab-select">
         <button id="tab0_button" onclick="tab(0)">Main</button>
-        <button id="tab1_button" onclick="tab(1)">Alpha</button>
+        <button id="tab1_button" onclick="tab(1)">Omega</button>
     </div>
 
     <div id="number">
-        <span id="number-display" style="font-size: 24px;"></span>
+        <span id="number-display" style="font-size: 24px;"></span> (+<span id="gain-display" style="font-size: 24px;"></span>/s)
         <br>
-        <button id="button1" onclick="start()">Number Go Up</button>
-        <button id="button2" onclick="faster()">Number Go Up Faster (<span id="speed-cost"></span>)</button>
+        <button id="button0" onclick="start()">Start</button><br>
+        <button id="button1" onclick="faster1()">Increase gain (+<span id="gain1"></span>, Cost: <span id="speed-cost1"></span>)</button><br>
+        <button id="button2" onclick="faster2()">Multiply gain (*<span id="gain2"></span>, Cost: <span id="speed-cost2"></span>)</button><br>
+        <button id="button3" onclick="faster3()">Raise gain to a power (^<span id="gain3"></span>, Cost: <span id="speed-cost3"></span>)</button><br>
+        <button id="button4" onclick="faster4()">Tetrate gain (^^<span id="gain4"></span>, Cost: <span id="speed-cost4"></span>)</button><br>
     </div>
 
-    <div id="alpha" style="display: none;">
+    <div id="omega" style="display: none;">
         coming soon™
-        🐇
+        🐈
     </div>
 </body>
 </html>

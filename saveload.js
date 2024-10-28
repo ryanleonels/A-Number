@@ -32,16 +32,16 @@ function decimalise(obj) {
 
 function save() {
     save_data = btoa(JSON.stringify(player))
-    localStorage.setItem("numbr", save_data)
-    localStorage.setItem("numbr_time", Date.now())
+    localStorage.setItem("numbr1", save_data)
+    localStorage.setItem("numbr1_time", Date.now())
 }
 
 function load() {
-    save_data = localStorage.getItem("numbr")
+    save_data = localStorage.getItem("numbr1")
     if (save_data != null) {
         decrypted_save_data = JSON.parse(atob(save_data))
         player = decimalise(decrypted_save_data)
-        player.offline_time += (Date.now() - Number(localStorage.getItem("numbr_time")))
+        player.offline_time += (Date.now() - Number(localStorage.getItem("numbr1_time")))
         return true
     } else {
         return false
@@ -54,17 +54,20 @@ function reset_everything(noprompt) {
         if (!confirm("REALLY hard reset? This will not unlock anything.")) return
     }
 
-    localStorage.removeItem("numbr")
-    localStorage.removeItem("numbr_time")
+    localStorage.removeItem("numbr1")
+    localStorage.removeItem("numbr1_time")
     document.location.reload()
 }
 
 function fix_buttons() {
-    ge("button1").style.display = player.unlocks == 0 ? "inline-block" : "none"
-    ge("button2").style.display = player.unlocks >= 1 ? "inline-block" : "none"
+    ge("button0").style.display = player.unlocks == 0 ? "inline-block" : "none"
+    ge("button1").style.display = player.unlocks >= 1 ? "inline-block" : "none"
+    ge("button2").style.display = player.unlocks >= 2 ? "inline-block" : "none"
+    ge("button3").style.display = player.unlocks >= 3 ? "inline-block" : "none"
+    ge("button4").style.display = player.unlocks >= 4 ? "inline-block" : "none"
 
     ge("tab0_button").style.display = player.unlocks >= 1 ? "inline-block" : "none"
-    ge("tab1_button").style.display = player.unlocks >= 2 ? "inline-block" : "none"
+    ge("tab1_button").style.display = player.unlocks >= 5 ? "inline-block" : "none"
 }
 
 if (!load()) {player = def_player} // Load the game
