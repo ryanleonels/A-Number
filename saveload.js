@@ -32,16 +32,14 @@ function decimalise(obj) {
 
 function save() {
     save_data = btoa(JSON.stringify(player))
-    localStorage.setItem("numbr", save_data)
-    localStorage.setItem("numbr_time", Date.now())
+    localStorage.setItem("numbr_bnuy", save_data)
 }
 
 function load() {
-    save_data = localStorage.getItem("numbr")
+    save_data = localStorage.getItem("numbr_bnuy")
     if (save_data != null) {
         decrypted_save_data = JSON.parse(atob(save_data))
         player = decimalise(decrypted_save_data)
-        player.offline_time += (Date.now() - Number(localStorage.getItem("numbr_time")))
         return true
     } else {
         return false
@@ -54,8 +52,7 @@ function reset_everything(noprompt) {
         if (!confirm("REALLY hard reset? This will not unlock anything.")) return
     }
 
-    localStorage.removeItem("numbr")
-    localStorage.removeItem("numbr_time")
+    localStorage.removeItem("numbr_bnuy")
     document.location.reload()
 }
 

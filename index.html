@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Number</title>
+    <title>Bnuy Incremental</title>
 
     <script src="break_eternity.js"></script>
     <script src="format.js"></script>
@@ -18,10 +18,11 @@
     </div>
 
     <div id="number">
-        <span id="number-display" style="font-size: 24px;"></span>
+        You have <span id="gen-display" style="font-size: 24px;"></span> generations of bnuy, producing <span id="gain-display" style="font-size: 24px;"></span> bnuys per second.<br>
+        You have <span id="number-display" style="font-size: 24px;"></span> bnuys
         <br>
-        <button id="button1" onclick="start()">Number Go Up</button>
-        <button id="button2" onclick="faster()">Number Go Up Faster (<span id="speed-cost"></span>)</button>
+        <button id="button1" onclick="adopt()">Adopt A Bnuy</button>
+        <button id="button2" onclick="breed()">Breed Your Bnuys (Cost: <span id="breed-cost"></span> bnuys)</button>
     </div>
 
     <div id="alpha" style="display: none;">
