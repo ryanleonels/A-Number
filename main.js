@@ -74,6 +74,8 @@ function tick(ms) {
     ge("gwa-cost").innerHTML = format1(cost(2, player.gwa))
     ge("softcapped").innerHTML = bnuy_gain.gte(1e200) ? " (softcapped)" : ""
     ge("hardcapped").innerHTML = player.bnuy.gte(Number.MAX_VALUE) ? " (hardcapped)" : ""
+    ge("hardcapped1").innerHTML = player.bnuy_gen.gte(1000) ? " (hardcapped)" : ""
+    ge("hardcapped2").innerHTML = player.gwa.gte(100) ? " (hardcapped)" : ""
 
     if (player.bnuy.gte(Number.MAX_VALUE)) {
         if (player.unlocks < 3) {
