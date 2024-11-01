@@ -57,8 +57,8 @@ function reset_everything(noprompt) {
 }
 
 function fix_buttons() {
-    ge("button1").style.display = player.unlocks == 0 ? "inline-block" : "none"
-    ge("button2").style.display = player.unlocks >= 1 ? "inline-block" : "none"
+    ge("button1").style.display = player.unlocks == 0 || player.bnuy_gen.eq(0) ? "inline-block" : "none"
+    ge("button2").style.display = player.unlocks >= 1 && player.bnuy_gen.gt(0) ? "inline-block" : "none"
 
     ge("tab0_button").style.display = player.unlocks >= 1 ? "inline-block" : "none"
     ge("tab1_button").style.display = player.unlocks >= 2 ? "inline-block" : "none"
