@@ -3,7 +3,7 @@ const ge = (x) => document.getElementById(x)
 const def_player = {
     bnuy: new Decimal(0),
     bnuy_gen: new Decimal(0),
-    alpha: new Decimal(0),
+    gwa: new Decimal(0),
     unlocks: 0,
     last_tick: 0
 }
@@ -16,17 +16,17 @@ let player;
 function check_unlocks() {
     let u = 0
     if (player.bnuy_gen.gte(1)) u = 1
-    if (player.bnuy.gte(1000) || player.alpha.gte(1)) u = 2
-    if (player.bnuy.gte(Number.MAX_VALUE)) u = 3
+    if (player.bnuy.gte(1000) || player.gwa.gte(1)) u = 2
+    if (player.unlocks >= u) u = player.unlocks
     return u
 }
 
 function tab(n) {
     ge("number").style.display = (n == 0 ? "inline-block" : "none")
-    ge("alpha").style.display = (n == 1 ? "inline-block" : "none")
+    ge("gwa").style.display = (n == 1 ? "inline-block" : "none")
 }
 
-function alpha(n) {
+function gwa(n) {
     return Decimal.pow(new Decimal(n).add(1), new Decimal(n).add(1))
 }
 
@@ -61,10 +61,7 @@ function tick(ms) {
     unlocks = check_unlocks()
     bnuy_gain = new Decimal(0)
     if (unlocks >= 1 && player.bnuy_gen.gt(0)) bnuy_gain = bnuy_gain.add(fib(player.bnuy_gen.add(1)))
-    if (unlocks >= 2) bnuy_gain = bnuy_gain.mul(alpha(player.alpha))
-    if (unlocks >= 3) {
-        if (player.unlocks < 3) alert("The world has collapsed due to excess bnuys.")
-    }
+    if (unlocks >= 2) bnuy_gain = bnuy_gain.mul(gwa(player.gwa))
     bnuy_gain = softcap(bnuy_gain, new Decimal(1e200), 0.5, true)
     
     player.bnuy = player.bnuy.add(bnuy_gain.mul(ms / 1000)).min(Number.MAX_VALUE)
@@ -72,11 +69,19 @@ function tick(ms) {
     ge("gain-display").innerHTML = format1(bnuy_gain)
     ge("number-display").innerHTML = format1(player.bnuy)
     ge("breed-cost").innerHTML = format1(cost(1, player.bnuy_gen))
-    ge("alpha-display").innerHTML = format1(player.alpha)
-    ge("alpha-mult-display").innerHTML = format1(alpha(player.alpha))
-    ge("alpha-cost").innerHTML = format1(cost(2, player.alpha))
+    ge("gwa-display").innerHTML = format1(player.gwa)
+    ge("gwa-mult-display").innerHTML = format1(gwa(player.gwa))
+    ge("gwa-cost").innerHTML = format1(cost(2, player.gwa))
     ge("softcapped").innerHTML = bnuy_gain.gte(1e200) ? " (softcapped)" : ""
     ge("hardcapped").innerHTML = player.bnuy.gte(Number.MAX_VALUE) ? " (hardcapped)" : ""
+
+    if (player.bnuy.gte(Number.MAX_VALUE)) {
+        if (player.unlocks < 3) {
+            player.unlocks = 3
+            alert("The world has collapsed due to excess bnuys.")
+        }
+    }
+
     let u = check_unlocks()
     player.unlocks = Math.max(player.unlocks, u)
     fix_buttons()

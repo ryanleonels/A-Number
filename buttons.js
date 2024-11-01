@@ -14,10 +14,10 @@ function breed() {
 }
 
 function prestige() {
-    let prestigeCost = cost(2, player.alpha)
+    let prestigeCost = cost(2, player.gwa)
     if (player.bnuy.gte(prestigeCost)) {
         player.bnuy = new Decimal(0)
         player.bnuy_gen = new Decimal(0)
-        player.alpha = player.alpha.add(1)
+        player.gwa = player.gwa.add(1)
     }
 }
